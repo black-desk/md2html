@@ -1,4 +1,4 @@
-# pandoc-include.lua
+# include
 
 A lua filter for pandoc to include other files.
 
