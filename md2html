@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# convert md to html using github's css
+
+function get_title() {
+        if [[ $1 = *index.md ]] ; then
+                TITLE=(--metadata title="$(echo "$(basename "$(dirname "$(realpath "$1")")")" | tr "_" " ")")
+        else
+                TITLE="$(echo "$(basename "$1")" | tr "_" " ")"
+                TITLE=(--metadata title="${TITLE%.md}")
+        fi
+}
+
+function get_filters() {
+        FILTERS=($(find "$HOME/.local/lib/md2html/filters" -maxdepth 2 -name \*.lua))
+        for i in "${FILTERS[@]}"
+        do
+                echo --lua-filter="$i"
+        done
+}
+
+get_title "$1"
+
+FILTERS=$(get_filters)
+
+pandoc -f markdown+east_asian_line_breaks+gfm_auto_identifiers+task_lists \
+        --toc --toc-depth=4 --standalone --reference-links -t html \
+        --include-in-header="$HOME/.local/share/md2html/header.html" \
+        ${FILTERS[@]} "$1" "${TITLE[@]}" -o "${1%.md}.html"

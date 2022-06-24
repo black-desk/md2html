@@ -806,7 +806,7 @@ local function get_dir(file)
 end
 
 function CodeBlock(block)
-        if not block.classes[1] == "include" then
+        if block.classes[1] ~= "include" then
                 return block
         end
 
