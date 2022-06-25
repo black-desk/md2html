@@ -26,4 +26,6 @@ FILTERS=$(get_filters)
 pandoc -f markdown+east_asian_line_breaks+gfm_auto_identifiers+task_lists \
         --toc --toc-depth=4 --standalone --reference-links -t html \
         --include-in-header="$HOME/.local/share/md2html/header.html" \
+        --template="$HOME/.local/share/md2html/html.template" \
+        -V toc-title:"Table of Contents" \
         ${FILTERS[@]} "$1" "${TITLE[@]}" -o "${1%.md}.html"
