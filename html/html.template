@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$ class="han-init">
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
@@ -17,6 +17,7 @@ $if(description-meta)$
   <meta name="description" content="$description-meta$" />
 $endif$
   <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
+  <link rel="stylesheet" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.css">
   <style>
     $styles.html()$
   </style>
@@ -49,5 +50,6 @@ $body$
 $for(include-after)$
 $include-after$
 $endfor$
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.js"></script>
 </body>
 </html>
